@@ -36,16 +36,12 @@ def hair(image, parsing, part=17, color=[230, 50, 20]):
     image_hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     tar_hsv = cv2.cvtColor(tar_color, cv2.COLOR_BGR2HSV)
 
-    if part == 12 or part == 13:
-        image_hsv[:, :, 0:2] = tar_hsv[:, :, 0:2]
-    else:
-        image_hsv[:, :, 0:1] = tar_hsv[:, :, 0:1]
+    matt = 0.2
 
-    changed = cv2.cvtColor(image_hsv, cv2.COLOR_HSV2BGR)
+    image_hsv[:, :, 0:2] = tar_hsv[:, :, 0:2]
+    image_hsv[:,:,2] = matt * tar_hsv[:, :, 2] + (1 - matt) * image_hsv[:,:,2]
 
-    if part == 17:
-        changed = sharpen(changed)
-    
+    changed = cv2.cvtColor(image_hsv, cv2.COLOR_HSV2BGR)    
 
     changed[parsing != part] = image[parsing != part]
     return changed
@@ -59,6 +55,8 @@ st.sidebar.subheader('Parameters')
 
 table = {
         'hair': 17,
+        'left_eyebrow': 2,
+        'right_eyebrow': 3,
         'upper_lip': 12,
         'lower_lip': 13,
         
@@ -78,10 +76,6 @@ else:
 
 new_image = image.copy()
 
-
-
-
-
 st.subheader('Original Image')
 
 st.image(image,use_column_width = True)
@@ -98,18 +92,20 @@ image = cv2.resize(image,(1024,1024))
 parsing = evaluate(demo_image, cp)
 parsing = cv2.resize(parsing, image.shape[0:2], interpolation=cv2.INTER_NEAREST)
 
-parts = [table['hair'], table['upper_lip'], table['lower_lip']]
+parts = [table['hair'], table['left_eyebrow'], table['right_eyebrow'], table['upper_lip'], table['lower_lip']]
 
 hair_color = st.sidebar.color_picker('Pick the Hair Color', '#000')
 hair_color = ImageColor.getcolor(hair_color, "RGB")
 
-lip_color = st.sidebar.color_picker('Pick the Lip Color', '#edbad1')
+eyebrow_color = st.sidebar.color_picker('Pick the Eyebrow Color', '#7D6346')
+eyebrow_color = ImageColor.getcolor(eyebrow_color, "RGB")
 
+lip_color = st.sidebar.color_picker('Pick the Lip Color', '#edbad1')
 lip_color = ImageColor.getcolor(lip_color, "RGB")
 
 
 
-colors = [hair_color, lip_color, lip_color]
+colors = [hair_color, eyebrow_color, eyebrow_color, lip_color, lip_color]
 
 for part, color in zip(parts, colors):
     image = hair(image, parsing, part, color)
