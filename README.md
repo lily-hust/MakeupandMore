@@ -4,17 +4,14 @@ Lip, eyebrow and hair color editor using face parsing maps.
 <table>
 
 <tr>
-<th>&nbsp;</th>
-<th>Hair</th>
-<th>Eyebrow</th>
-<th>Lip</th>
+<th>Original</th>
+<th>Make up</th>
 </tr>
 
 <!-- Line 1: Original Input -->
 <tr>
-<td><em>Original Input</em></td>
 <td><img src="makeup/116_ori.png" height="256" width="256" alt="Original Input"></td>
-<td><img src="makeup/116_change.png" height="256" width="256" alt="Original Input"></td>
+<td><img src="makeup/116_change.png" height="256" width="256" alt="Output"></td>
 </tr>
 
 </table>
