@@ -11,7 +11,7 @@ Lip, eyebrow and hair color editor using face parsing maps.
 <!-- Line 1: Original Input -->
 <tr>
 <td><img src="makeup/116_ori.png" height="256" width="256" alt="Original Input"></td>
-<td><img src="makeup/116_change.png" height="256" width="256" alt="Output"></td>
+<td><img src="makeup/116_change.jpg" height="256" width="256" alt="Output"></td>
 </tr>
 
 </table>
