@@ -94,13 +94,13 @@ parsing = cv2.resize(parsing, image.shape[0:2], interpolation=cv2.INTER_NEAREST)
 
 parts = [table['hair'], table['left_eyebrow'], table['right_eyebrow'], table['upper_lip'], table['lower_lip']]
 
-hair_color = st.sidebar.color_picker('Pick the Hair Color', '#000')
+hair_color = st.sidebar.color_picker('Pick the Hair Color', '#6D6246')
 hair_color = ImageColor.getcolor(hair_color, "RGB")
 
 eyebrow_color = st.sidebar.color_picker('Pick the Eyebrow Color', '#7D6346')
 eyebrow_color = ImageColor.getcolor(eyebrow_color, "RGB")
 
-lip_color = st.sidebar.color_picker('Pick the Lip Color', '#edbad1')
+lip_color = st.sidebar.color_picker('Pick the Lip Color', '#AF2061')
 lip_color = ImageColor.getcolor(lip_color, "RGB")
 
 
