@@ -78,7 +78,7 @@ new_image = image.copy()
 
 st.subheader('Original Image')
 
-st.image(image,use_column_width = True)
+st.image(image,use_container_width = True)
 
 
 cp = 'cp/79999_iter.pth'
@@ -115,4 +115,4 @@ image = cv2.resize(image,(w,h))
 
 st.subheader('Output Image')
 
-st.image(image,use_column_width = True)
+st.image(image,use_container_width = True)
